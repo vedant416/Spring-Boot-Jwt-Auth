@@ -1,0 +1,58 @@
+### Sign Up User
+POST http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+  "firstname": "demo_user",
+  "lastname": "demo_user",
+  "email": "demo_user",
+  "password": "demo_user",
+  "role": "USER"
+}
+
+> {% client.global.set("token", response.body.token) %}
+
+
+### Sign Up Admin
+POST http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+  "firstname": "demo_admin",
+  "lastname": "demo_admin",
+  "email": "demo_admin",
+  "password": "demo_admin",
+  "role": "ADMIN"
+}
+
+> {% client.global.set("token", response.body.token) %}
+
+<> 2024-07-18T182045.200.json
+
+### Login
+POST http://localhost:8080/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "demo_admin",
+  "password": "demo_admin"
+}
+
+> {% client.global.set("token", response.body.token) %}
+
+
+### Logout
+POST http://localhost:8080/api/auth/logout
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Test Admin
+GET http://localhost:8080/api/hello/admin
+Authorization: Bearer {{token}}
+
+<> 2024-07-18T182158.200.txt
+
+### Test User
+GET http://localhost:8080/api/hello/user
+Authorization: Bearer {{token}}
+
